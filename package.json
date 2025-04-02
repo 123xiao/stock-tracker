@@ -2,6 +2,18 @@
   "name": "stock-tracker",
   "version": "0.1.0",
   "private": true,
+  "author": "盯盘朋友",
+  "description": "股票仓位追踪应用",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/123xiao/stock-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/123xiao/stock-tracker/issues"
+  },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
     "@testing-library/dom": "^10.4.0",
@@ -25,7 +37,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "electron .",
+    "electron-pack": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ npm run build && electron-builder build -c.extraMetadata.main=electron/main.js",
+    "electron-build": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ electron-builder",
+    "dist": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +63,37 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^35.1.2",
+    "electron-builder": "^26.0.12",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "com.stocktracker.app",
+    "productName": "盯盘朋友",
+    "copyright": "Copyright © 2024",
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "盯盘朋友"
+    }
   }
 }

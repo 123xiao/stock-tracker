@@ -6,6 +6,7 @@ import FriendSelector from "../components/FriendSelector";
 import StockHoldings from "../components/StockHoldings";
 import AddFriendForm from "../components/AddFriendForm";
 import EditFriendForm from "../components/EditFriendForm";
+import OpenSourceInfo from "../components/OpenSourceInfo";
 import { Friend } from "../types";
 import {
   getFriends,
@@ -155,7 +156,7 @@ const HomePage: React.FC = () => {
       </Content>
 
       <Footer style={{ textAlign: "center" }}>
-        盯盘朋友 ©{new Date().getFullYear()} - 实时追踪朋友股票仓位
+        <OpenSourceInfo />
       </Footer>
 
       <AddFriendForm
