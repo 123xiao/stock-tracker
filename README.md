@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# 盯盘朋友 - 股票仓位追踪应用
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+这是一个用于追踪朋友股票仓位和实时涨跌的 Web 应用。
 
-## Available Scripts
+## 主要功能
 
-In the project directory, you can run:
+- **大盘指数展示**：在页面上方实时显示主要市场指数（上证指数、深证成指、创业板指）
+- **朋友仓位管理**：可以添加、编辑、删除多个朋友的股票仓位信息
+- **实时股票数据**：展示股票的实时价格和涨跌情况
+- **持仓盈亏计算**：自动计算每个持仓的盈亏金额和盈亏比例
+- **数据本地存储**：所有朋友和持仓数据持久化保存在浏览器本地存储中
 
-### `npm start`
+## 技术栈
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React 19
+- TypeScript
+- Ant Design UI 组件库
+- 本地存储 (localStorage)
+- 雪球网股票 API - 实时股票数据
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 如何运行
 
-### `npm test`
+1. 安装依赖：
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   npm install
+   ```
 
-### `npm run build`
+2. 启动开发服务器：
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 在浏览器中访问：
+   ```
+   http://localhost:3000
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 使用说明
 
-### `npm run eject`
+1. **查看大盘指数**：
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   - 页面上方显示主要市场指数
+   - 点击右上角的"刷新数据"按钮获取最新数据
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **添加朋友及持仓**：
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   - 点击"添加朋友"按钮
+   - 输入朋友名称
+   - 添加朋友的股票持仓信息（股票代码、名称、持仓数量、成本价）
+   - 点击"添加"按钮保存
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. **编辑朋友持仓**：
 
-## Learn More
+   - 点击朋友卡片上的"编辑"按钮
+   - 修改朋友名称或持仓信息
+   - 可以添加或删除股票
+   - 点击"保存"按钮更新信息
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **删除朋友**：
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - 点击朋友卡片上的"删除"按钮
+   - 确认删除操作
+   - 系统将自动切换到其他朋友的仓位显示
+
+5. **查看朋友持仓**：
+
+   - 点击朋友卡片选择要查看的朋友
+   - 下方表格将显示该朋友的持仓情况和实时盈亏
+
+6. **刷新数据**：
+   - 点击页面右上角的"刷新数据"按钮可立即更新所有数据
+
+## 注意事项
+
+- 本应用使用雪球网的股票数据 API
+- 股票代码格式为：沪市股票以"SH"开头，深市股票以"SZ"开头，如：SH600000、SZ000001
+- 所有朋友和持仓数据保存在浏览器的本地存储中，清除浏览器缓存会导致数据丢失

@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+/* 自定义全局样式 */
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 涨跌颜色（中国股市涨为红色，跌为绿色） */
+.stock-rise {
+  color: #f56a00;
+}
+
+.stock-fall {
+  color: #52c41a;
+}
+
+/* 大盘指数样式 */
+.market-indices {
+  margin-bottom: 30px;
+}
+
+/* 响应式布局调整 */
+@media (max-width: 767px) {
+  .ant-layout-content {
+    padding: 0 15px !important;
+  }
+
+  .ant-layout-header {
+    padding: 0 15px !important;
+  }
+}
+
+/* 持仓表格样式优化 */
+.stock-holdings .ant-table-cell {
+  padding: 12px 8px;
+}
+
+@media (max-width: 576px) {
+  .stock-holdings .ant-table-cell {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+}
