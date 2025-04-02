@@ -20,6 +20,12 @@
 - **数据本地存储**：所有朋友和持仓数据持久化保存在浏览器本地存储中
 - **跨平台支持**：支持打包为 Windows 桌面应用程序
 
+## 在线体验
+
+您可以直接访问以下地址体验应用：
+
+[https://stock-tracker-3fu.pages.dev/](https://stock-tracker-3fu.pages.dev/)
+
 ## 系统截图
 
 ### 首页展示

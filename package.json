@@ -51,7 +51,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://stock.xueqiu.com",
+  "proxy": "https://workers-playground-autumn-dust-dd36.1258183603.workers.dev/https://stock.xueqiu.com",
   "browserslist": {
     "production": [
       ">0.2%",
