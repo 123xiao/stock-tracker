@@ -13,6 +13,13 @@ import {
   updateFriend,
 } from "../utils/storage";
 
+// 为window添加自定义属性
+declare global {
+  interface Window {
+    _homePageLoaded?: boolean;
+  }
+}
+
 const { Title } = Typography;
 
 const HomePage: React.FC = () => {
@@ -29,18 +36,25 @@ const HomePage: React.FC = () => {
 
   // 初始化加载朋友数据
   useEffect(() => {
-    const loadedFriends = getFriends();
-    setFriends(loadedFriends);
+    // 仅在首次渲染时加载数据
+    const loadFriendsData = () => {
+      const loadedFriends = getFriends();
+      setFriends(loadedFriends);
 
-    // 如果有朋友数据，默认选中第一个
-    if (loadedFriends.length > 0) {
-      setSelectedFriendId(loadedFriends[0].id);
-    }
+      // 如果有朋友数据，默认选中第一个
+      if (loadedFriends.length > 0) {
+        setSelectedFriendId(loadedFriends[0].id);
+      }
+    };
+
+    // 立即加载一次
+    loadFriendsData();
   }, []);
 
   // 监听全局刷新事件
   useEffect(() => {
     const handleGlobalRefresh = () => {
+      // 更新刷新时间戳，触发子组件重新获取数据
       setLastUpdateTime(Date.now());
       message.success("数据已刷新");
     };

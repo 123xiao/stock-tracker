@@ -39,5 +39,18 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // 确保在应用启动后刷新数据
+      window.addEventListener("load", function () {
+        // 如果当前是根路径，触发一次刷新事件
+        if (
+          window.location.pathname === "/" ||
+          window.location.pathname === "/index.html"
+        ) {
+          // 触发刷新事件，让React应用加载数据
+          window.dispatchEvent(new CustomEvent("app:refresh"));
+        }
+      });
+    </script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Space, message, Popconfirm } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Friend } from "../types";
@@ -20,6 +20,16 @@ const FriendSelector: React.FC<FriendSelectorProps> = ({
   onEditFriend,
   onDeleteFriend,
 }) => {
+  // 如果有朋友但没有选中，自动选择第一个（只在首次渲染时执行一次）
+  useEffect(() => {
+    // 当有朋友但没有选中任何一个时，自动选中第一个
+    if (friends.length > 0 && !selectedFriendId) {
+      console.log("自动选择第一个朋友");
+      onSelectFriend(friends[0].id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="friend-selector" style={{ marginBottom: "20px" }}>
       <Space direction="vertical" style={{ width: "100%" }}>

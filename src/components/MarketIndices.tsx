@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, Row, Col, Typography, Spin, Alert } from "antd";
-import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
+import { Card, Row, Col, Typography, Spin, Alert, Tooltip } from "antd";
+import {
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { MarketIndex } from "../types";
 import { getMarketIndices } from "../utils/stockApi";
 import { formatPercent } from "../utils/helpers";
@@ -31,9 +35,12 @@ const MarketIndices: React.FC<MarketIndicesProps> = ({ lastUpdateTime }) => {
     }
   };
 
-  // 当lastUpdateTime变化时重新获取数据（手动刷新）
   useEffect(() => {
     fetchIndices();
+    // 不再需要延时刷新，因为API已经添加了防抖
+    return () => {
+      // 清理函数
+    };
   }, [lastUpdateTime]);
 
   return (
