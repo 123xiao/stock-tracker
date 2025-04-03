@@ -15,9 +15,8 @@ const OpenSourceInfo: React.FC = () => {
   return (
     <div
       className="open-source-info"
-      style={{ textAlign: "center", padding: "12px", marginTop: "20px" }}
+      style={{ textAlign: "center", padding: "12px", marginTop: "0" }}
     >
-      <Divider />
       <Space direction="vertical" size="small">
         <Space>
           <Button

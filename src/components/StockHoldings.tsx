@@ -383,16 +383,20 @@ const StockHoldings: React.FC<StockHoldingsProps> = ({
       {loading ? (
         <Spin tip="加载数据中..." />
       ) : (
-        <Table
-          columns={columns}
-          dataSource={stocksWithData.map((stock) => ({
-            ...stock,
-            key: stock.code,
-          }))}
-          pagination={false}
-          bordered
-          locale={{ emptyText: "无数据" }}
-        />
+        <div style={{ overflowX: "auto" }}>
+          <Table
+            className="stock-holdings"
+            columns={columns}
+            dataSource={stocksWithData.map((stock) => ({
+              ...stock,
+              key: stock.code,
+            }))}
+            pagination={false}
+            bordered
+            locale={{ emptyText: "无数据" }}
+            scroll={{ x: "max-content" }}
+          />
+        </div>
       )}
     </div>
   );

@@ -60,11 +60,65 @@
 /* 响应式布局调整 */
 @media (max-width: 767px) {
   .ant-layout-content {
-    padding: 0 15px !important;
+    padding: 0 8px !important;
   }
 
   .ant-layout-header {
-    padding: 0 15px !important;
+    padding: 0 8px !important;
+  }
+
+  /* 顶部标题在移动端更小 */
+  h1 {
+    font-size: 18px !important;
+  }
+
+  /* 移动端表格紧凑显示 */
+  .ant-table-cell {
+    padding: 8px 4px !important;
+  }
+
+  /* 移动端按钮紧凑排列 */
+  .ant-btn {
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  /* 移动端卡片更紧凑 */
+  .ant-card-body {
+    padding: 12px 8px !important;
+  }
+
+  /* 模拟仓四张卡片在移动端改为两行显示 */
+  .account-summary-row .ant-col-6 {
+    width: 50% !important;
+    margin-bottom: 16px;
+  }
+
+  /* 多行文本溢出省略 */
+  .mobile-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 极小屏幕调整 (手机竖屏) */
+@media (max-width: 480px) {
+  /* 表格显示更紧凑 */
+  .ant-table {
+    font-size: 12px !important;
+  }
+
+  /* 标题减小 */
+  .ant-typography h4,
+  h4.ant-typography {
+    font-size: 16px !important;
+  }
+
+  /* 模拟仓卡片在非常小的屏幕上独占一行 */
+  .account-summary-row .ant-col-6 {
+    width: 100% !important;
+    margin-bottom: 8px;
   }
 }
 
@@ -73,9 +127,48 @@
   padding: 12px 8px;
 }
 
+/* 表格响应式优化 */
 @media (max-width: 576px) {
   .stock-holdings .ant-table-cell {
     padding: 8px 4px;
     font-size: 12px;
+  }
+
+  /* 重要操作按钮在小屏幕上保持可见 */
+  .action-column {
+    position: sticky;
+    right: 0;
+    background-color: white;
+    z-index: 1;
+  }
+}
+
+/* 导航样式优化 */
+.ant-tabs-nav {
+  margin-bottom: 8px !important;
+  height: 40px !important;
+}
+
+.ant-tabs-tab {
+  padding: 8px 16px !important;
+  height: 40px !important;
+  line-height: 24px !important;
+}
+
+@media (max-width: 576px) {
+  .ant-tabs-tab {
+    padding: 8px 12px !important;
+    margin: 0 4px !important;
+  }
+
+  .nav-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ant-tabs-tab {
+    padding: 8px 8px !important;
+    margin: 0 2px !important;
   }
 }

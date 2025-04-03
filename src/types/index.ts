@@ -32,3 +32,33 @@ export interface MarketIndex {
   change: number; // 涨跌额
   changePercent: number; // 涨跌幅百分比
 }
+
+// 模拟仓类型
+export interface SimulatedAccount {
+  id: string;
+  name: string;
+  initialBalance: number;
+  currentBalance: number;
+  holdings: SimulatedHolding[];
+  transactions: Transaction[];
+  createdAt: string;
+}
+
+export interface SimulatedHolding {
+  code: string;
+  name: string;
+  quantity: number;
+  avgCost: number;
+  currentValue?: number;
+}
+
+export interface Transaction {
+  id: string;
+  date: string;
+  type: "buy" | "sell";
+  code: string;
+  name: string;
+  quantity: number;
+  price: number;
+  amount: number; // 交易总金额
+}

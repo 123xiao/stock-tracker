@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Typography, Divider, Button, message } from "antd";
-import { ReloadOutlined } from "@ant-design/icons";
+import { Typography, Divider, message } from "antd";
 import MarketIndices from "../components/MarketIndices";
 import FriendSelector from "../components/FriendSelector";
 import StockHoldings from "../components/StockHoldings";
 import AddFriendForm from "../components/AddFriendForm";
 import EditFriendForm from "../components/EditFriendForm";
-import OpenSourceInfo from "../components/OpenSourceInfo";
 import { Friend } from "../types";
 import {
   getFriends,
@@ -15,7 +13,6 @@ import {
   updateFriend,
 } from "../utils/storage";
 
-const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 const HomePage: React.FC = () => {
@@ -39,6 +36,20 @@ const HomePage: React.FC = () => {
     if (loadedFriends.length > 0) {
       setSelectedFriendId(loadedFriends[0].id);
     }
+  }, []);
+
+  // 监听全局刷新事件
+  useEffect(() => {
+    const handleGlobalRefresh = () => {
+      setLastUpdateTime(Date.now());
+      message.success("数据已刷新");
+    };
+
+    window.addEventListener("app:refresh", handleGlobalRefresh);
+
+    return () => {
+      window.removeEventListener("app:refresh", handleGlobalRefresh);
+    };
   }, []);
 
   // 处理添加朋友
@@ -104,60 +115,29 @@ const HomePage: React.FC = () => {
     return friends.find((friend) => friend.id === selectedFriendId) || null;
   };
 
-  // 手动刷新数据
-  const handleRefresh = () => {
-    setLastUpdateTime(Date.now());
-    message.success("数据已刷新");
-  };
-
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Header style={{ background: "#fff", padding: "0 20px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Title level={3} style={{ margin: "16px 0" }}>
-            盯盘朋友仓位助手
-          </Title>
-          <Button
-            type="primary"
-            icon={<ReloadOutlined />}
-            onClick={handleRefresh}
-          >
-            刷新数据
-          </Button>
-        </div>
-      </Header>
+    <div>
+      {/* <Title level={3} style={{ marginBottom: "24px" }}>
+        朋友持仓
+      </Title> */}
 
-      <Content style={{ padding: "0 50px" }}>
-        <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-          <MarketIndices lastUpdateTime={lastUpdateTime} />
+      <MarketIndices lastUpdateTime={lastUpdateTime} />
 
-          <Divider />
+      <Divider />
 
-          <FriendSelector
-            friends={friends}
-            selectedFriendId={selectedFriendId}
-            onSelectFriend={handleSelectFriend}
-            onAddFriend={() => setAddFriendModalVisible(true)}
-            onEditFriend={handleEditFriendClick}
-            onDeleteFriend={handleDeleteFriend}
-          />
+      <FriendSelector
+        friends={friends}
+        selectedFriendId={selectedFriendId}
+        onSelectFriend={handleSelectFriend}
+        onAddFriend={() => setAddFriendModalVisible(true)}
+        onEditFriend={handleEditFriendClick}
+        onDeleteFriend={handleDeleteFriend}
+      />
 
-          <StockHoldings
-            friend={getSelectedFriend()}
-            lastUpdateTime={lastUpdateTime}
-          />
-        </div>
-      </Content>
-
-      <Footer style={{ textAlign: "center" }}>
-        <OpenSourceInfo />
-      </Footer>
+      <StockHoldings
+        friend={getSelectedFriend()}
+        lastUpdateTime={lastUpdateTime}
+      />
 
       <AddFriendForm
         visible={addFriendModalVisible}
@@ -174,7 +154,7 @@ const HomePage: React.FC = () => {
         onSave={handleSaveEditedFriend}
         friend={currentEditFriend}
       />
-    </Layout>
+    </div>
   );
 };
 
