@@ -96,7 +96,7 @@ function App() {
               lineHeight: "48px",
             }}
           >
-            <h1 style={{ margin: 0, fontSize: "18px" }}>盯盘朋友仓位助手</h1>
+            <h1 style={{ margin: 0, fontSize: "18px" }}>盯盘朋友</h1>
             <Button
               type="primary"
               size="small"
