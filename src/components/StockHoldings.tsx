@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Table, Typography, Tag, Spin, Alert } from "antd";
+import { Table, Typography, Tag, Spin, Alert, Button, Tooltip } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
+import {
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  LinkOutlined,
+} from "@ant-design/icons";
 import { Friend, Stock } from "../types";
 import { getMultipleStocksInfo } from "../utils/stockApi";
 import {
@@ -167,7 +171,17 @@ const StockHoldings: React.FC<StockHoldingsProps> = ({
           {text}{" "}
           <Text type="secondary" style={{ fontSize: "12px" }}>
             {record.code}
-          </Text>
+          </Text>{" "}
+          <Tooltip title="在雪球网查看">
+            <Button
+              type="link"
+              icon={<LinkOutlined />}
+              size="small"
+              href={`https://xueqiu.com/S/${record.code.toUpperCase()}`}
+              target="_blank"
+              style={{ padding: 0 }}
+            />
+          </Tooltip>
         </span>
       ),
     },
