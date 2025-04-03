@@ -1,5 +1,5 @@
 /**
- * 盯盘朋友 - 股票API工具模块
+ * 盯盘朋友仓位助手 - 股票API工具模块
  *
  * 源码来自开源项目: https://github.com/123xiao/stock-tracker
  * 遵循MIT许可证

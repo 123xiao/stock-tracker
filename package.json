@@ -2,7 +2,7 @@
   "name": "stock-tracker",
   "version": "0.1.0",
   "private": true,
-  "author": "盯盘朋友",
+  "author": "盯盘朋友仓位助手",
   "description": "股票仓位追踪应用",
   "main": "electron/main.js",
   "homepage": "./",
@@ -73,7 +73,7 @@
   },
   "build": {
     "appId": "com.stocktracker.app",
-    "productName": "盯盘朋友",
+    "productName": "盯盘朋友仓位助手",
     "copyright": "Copyright © 2024",
     "files": [
       "build/**/*",
@@ -93,7 +93,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "盯盘朋友"
+      "shortcutName": "盯盘朋友仓位助手"
     }
   }
 }

@@ -33,11 +33,11 @@ const OpenSourceInfo: React.FC = () => {
             icon={<InfoCircleOutlined />}
             onClick={() => setAboutModalVisible(true)}
           >
-            关于盯盘朋友
+            关于盯盘朋友仓位助手
           </Button>
         </Space>
         <Text type="secondary" style={{ fontSize: "12px" }}>
-          ©️ 2024 盯盘朋友 | 开源项目，遵循MIT许可证
+          ©️ 2024 盯盘朋友仓位助手 | 开源项目，遵循MIT许可证
         </Text>
       </Space>
 

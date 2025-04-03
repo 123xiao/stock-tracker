@@ -16,7 +16,7 @@ interface AboutModalProps {
 const AboutModal: React.FC<AboutModalProps> = ({ visible, onClose }) => {
   return (
     <Modal
-      title="关于盯盘朋友"
+      title="关于盯盘朋友仓位助手"
       open={visible}
       onCancel={onClose}
       footer={[
@@ -28,7 +28,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ visible, onClose }) => {
     >
       <Space direction="vertical" style={{ width: "100%" }}>
         <Title level={4} style={{ textAlign: "center", margin: "10px 0" }}>
-          盯盘朋友 - 股票仓位追踪应用
+          盯盘朋友仓位助手 - 股票仓位追踪应用
         </Title>
 
         <Paragraph>
@@ -96,7 +96,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ visible, onClose }) => {
           type="secondary"
           style={{ textAlign: "center", display: "block" }}
         >
-          版本 1.0.0 · ©️ 2024 盯盘朋友
+          版本 1.0.0 · ©️ 2024 盯盘朋友仓位助手
         </Text>
       </Space>
     </Modal>

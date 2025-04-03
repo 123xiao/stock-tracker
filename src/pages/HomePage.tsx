@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
           }}
         >
           <Title level={3} style={{ margin: "16px 0" }}>
-            盯盘朋友
+            盯盘朋友仓位助手
           </Title>
           <Button
             type="primary"

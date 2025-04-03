@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Input, Button, Space, InputNumber, message } from "antd";
-import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import {
+  Modal,
+  Form,
+  Input,
+  Button,
+  Space,
+  InputNumber,
+  message,
+  Select,
+  Tooltip,
+} from "antd";
+import {
+  PlusOutlined,
+  MinusCircleOutlined,
+  LinkOutlined,
+} from "@ant-design/icons";
 import { Friend, FriendStock } from "../types";
+import { stockInfos, StockInfo } from "../utils/stockInfoData";
 
 interface EditFriendFormProps {
   visible: boolean;
@@ -18,6 +33,8 @@ const EditFriendForm: React.FC<EditFriendFormProps> = ({
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [stockOptions, setStockOptions] = useState<any[]>([]);
+  const [searchText, setSearchText] = useState("");
 
   // 当friend变化时，重置表单数据
   useEffect(() => {
@@ -28,6 +45,56 @@ const EditFriendForm: React.FC<EditFriendFormProps> = ({
       });
     }
   }, [visible, friend, form]);
+
+  // 处理股票搜索
+  useEffect(() => {
+    if (searchText) {
+      const filteredOptions = stockInfos
+        .filter(
+          (stock: StockInfo) =>
+            stock.code.toLowerCase().includes(searchText.toLowerCase()) ||
+            stock.name.toLowerCase().includes(searchText.toLowerCase()) ||
+            stock.pyname.toLowerCase().includes(searchText.toLowerCase())
+        )
+        .slice(0, 100) // 限制显示数量
+        .map((stock: StockInfo) => ({
+          value: stock.code,
+          label: (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>
+                {stock.name} ({stock.code})
+              </span>
+              <Tooltip title="在雪球查看">
+                <a
+                  href={`https://xueqiu.com/S/${stock.code}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <LinkOutlined />
+                </a>
+              </Tooltip>
+            </div>
+          ),
+        }));
+      setStockOptions(filteredOptions);
+    } else {
+      setStockOptions([]);
+    }
+  }, [searchText]);
+
+  // 处理股票选择
+  const handleStockSelect = (value: string, option: any, index: number) => {
+    const selectedStock = stockInfos.find(
+      (stock: StockInfo) => stock.code === value
+    );
+    if (selectedStock) {
+      // 更新股票名称
+      const stocks = form.getFieldValue("stocks");
+      stocks[index].name = selectedStock.name;
+      form.setFieldsValue({ stocks });
+    }
+  };
 
   const handleSubmit = async () => {
     try {
@@ -100,7 +167,7 @@ const EditFriendForm: React.FC<EditFriendFormProps> = ({
                 <label style={{ fontWeight: "bold" }}>持仓股票</label>
               </div>
 
-              {fields.map(({ key, name, ...restField }) => (
+              {fields.map(({ key, name, ...restField }, index) => (
                 <Space
                   key={key}
                   style={{ display: "flex", marginBottom: 8 }}
@@ -111,7 +178,19 @@ const EditFriendForm: React.FC<EditFriendFormProps> = ({
                     name={[name, "code"]}
                     rules={[{ required: true, message: "请输入股票代码" }]}
                   >
-                    <Input placeholder="股票代码 (如 SH600000)" />
+                    <Select
+                      showSearch
+                      placeholder="股票代码/名称"
+                      optionFilterProp="children"
+                      onSearch={setSearchText}
+                      onChange={(value, option) =>
+                        handleStockSelect(value, option, index)
+                      }
+                      style={{ width: "180px" }}
+                      options={stockOptions}
+                      notFoundContent="无匹配股票"
+                      filterOption={false}
+                    />
                   </Form.Item>
 
                   <Form.Item
