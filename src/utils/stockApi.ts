@@ -28,7 +28,7 @@ const isElectron = () => {
 
 // 根据环境确定API基础URL
 const getBaseUrl = () => {
-  return "https://cf-proxy.kkkkkkkkk.workers.dev/https://stock.xueqiu.com";
+  return "https://cf-proxy.123408.xyz/https://stock.xueqiu.com";
 };
 
 // 雪球网股票API路径

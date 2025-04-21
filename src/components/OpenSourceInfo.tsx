@@ -35,8 +35,23 @@ const OpenSourceInfo: React.FC = () => {
             关于盯盘朋友仓位助手
           </Button>
         </Space>
+
+        <div className="mt-2">
+          <Text
+            type="secondary"
+            style={{ fontSize: "12px", display: "block", marginBottom: "4px" }}
+          >
+            访问统计
+          </Text>
+          <img
+            src="https://profile-counter.glitch.me/stock.123408.xyz/count.svg"
+            alt="访问计数器"
+            style={{ margin: "0 auto" }}
+          />
+        </div>
+
         <Text type="secondary" style={{ fontSize: "12px" }}>
-          ©️ 2024 盯盘朋友仓位助手 | 开源项目，遵循MIT许可证
+          ©️ 2025 盯盘朋友仓位助手 | 开源项目，遵循MIT许可证
         </Text>
       </Space>
 

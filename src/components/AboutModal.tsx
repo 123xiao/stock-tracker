@@ -92,11 +92,20 @@ const AboutModal: React.FC<AboutModalProps> = ({ visible, onClose }) => {
 
         <Divider />
 
+        <div className="mt-3">
+          <p className="text-xs text-gray-500 mb-2">访问统计</p>
+          <img
+            src="https://profile-counter.glitch.me/stock.123408.xyz/count.svg"
+            alt="访问计数器"
+            className="mx-auto"
+          />
+        </div>
+
         <Text
           type="secondary"
           style={{ textAlign: "center", display: "block" }}
         >
-          版本 1.0.0 · ©️ 2024 盯盘朋友仓位助手
+          版本 1.0.0 · ©️ 2025 盯盘朋友仓位助手
         </Text>
       </Space>
     </Modal>
